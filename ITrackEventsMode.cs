@@ -10,12 +10,12 @@ namespace Push_Blur_Transition
     interface ITrackEventsMode
     {
         void applyEffects();
-        void CutFirstClip();
+        void CutFirstGroup();
         void AddEffectsFirstClip();
         void CutSecondClip();
         void AddEffectsSecondClip();
         void MoveSecondClip();
-        void ChangeTrackSecondClip();
+        void ChangeTrackSecondGroup();
 
     }
 }

@@ -11,5 +11,6 @@ namespace Push_Blur_Transition
         public static int splitOffset = 150;
         public static string pluginName = "VEGAS Linear Blur";
         public static string pluginPreset = "Horizontal Light";
+        public static bool DebugMode = true;
     }
 }

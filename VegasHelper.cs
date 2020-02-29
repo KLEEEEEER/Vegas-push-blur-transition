@@ -62,6 +62,26 @@ namespace Push_Blur_Transition
             return (videos.Count == 2 && audios.Count == 2) ? true : false;
         }
 
+        public static bool isPickedEventsInTheSameGroup(List<TrackEvent> selectedMedias)
+        {
+            TrackEventGroup group = null;
+            foreach (TrackEvent trackEvent in selectedMedias)
+            {
+                if (group == null)
+                {
+                    group = trackEvent.Group;
+                }
+                else
+                {
+                    if (group == trackEvent.Group)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public static List<Track> FindVideoTracks(Vegas vegas)
         {
             List<Track> videoTracks = new List<Track>();

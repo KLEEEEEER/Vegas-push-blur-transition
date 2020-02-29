@@ -105,22 +105,10 @@ namespace Push_Blur_Transition
             List<TrackEvent> selectedMedias = VegasHelper.FindSelectedEvents(myVegas.Project);
             selectedMedias = selectedMedias.OrderBy((x) => x.Start).ToList();
 
-            if (VegasHelper.isPickedTwoVideos(selectedMedias))
-            {
-                MessageBox.Show($"isPickedTwoVideos");
-                //VegasHelper.applyEffects(selectedMedias, myVegas, TransitionMode.ToLeft);
-            } 
-            else if (VegasHelper.isPickedTwoVideosAndTwoAudios(selectedMedias))
-            {
-                
-                FourTrackEventsMode fourTrackEventsMode = new FourTrackEventsMode(selectedMedias, myVegas, TransitionMode.ToLeft);
-                fourTrackEventsMode.applyEffects();
-            }
-            else
-            {
-                MessageBox.Show($"Selected {selectedMedias.Count} elements. Not correct selected elements. isPickedTwoVideos={VegasHelper.isPickedTwoVideos(selectedMedias)} isPickedTwoVideosAndTwoAudios={VegasHelper.isPickedTwoVideosAndTwoAudios(selectedMedias)}");
-                return;
-            }
+            if (!validateSelectedTrackEvents(selectedMedias)) return;
+
+            PushBlur pushBlur = new PushBlur(selectedMedias, myVegas, TransitionMode.ToLeft);
+            pushBlur.applyEffects();
         }
 
         private void pushLeftClick(object sender, System.EventArgs e)
@@ -128,21 +116,27 @@ namespace Push_Blur_Transition
             List<TrackEvent> selectedMedias = VegasHelper.FindSelectedEvents(myVegas.Project);
             selectedMedias = selectedMedias.OrderBy((x) => x.Start).ToList();
 
-            if (VegasHelper.isPickedTwoVideos(selectedMedias))
+            if (!validateSelectedTrackEvents(selectedMedias)) return;
+
+            PushBlur pushBlur = new PushBlur(selectedMedias, myVegas, TransitionMode.ToRight);
+            pushBlur.applyEffects();
+        }
+
+        private bool validateSelectedTrackEvents(List<TrackEvent> selectedMedias)
+        {
+            if (selectedMedias.Count != 2)
             {
-                MessageBox.Show($"isPickedTwoVideos");
-                //VegasHelper.applyEffects(selectedMedias, myVegas, TransitionMode.ToLeft);
+                MessageBox.Show($"Need to select 2 elements. Selected " + selectedMedias.Count + " elements.");
+                return false;
             }
-            else if (VegasHelper.isPickedTwoVideosAndTwoAudios(selectedMedias))
+
+            if (VegasHelper.isPickedEventsInTheSameGroup(selectedMedias))
             {
-                FourTrackEventsMode fourTrackEventsMode = new FourTrackEventsMode(selectedMedias, myVegas, TransitionMode.ToRight);
-                fourTrackEventsMode.applyEffects();
+                MessageBox.Show($"Need to select 2 elements from separate groups.");
+                return false;
             }
-            else
-            {
-                MessageBox.Show($"Selected {selectedMedias.Count} elements. Not correct selected elements. isPickedTwoVideos={VegasHelper.isPickedTwoVideos(selectedMedias)} isPickedTwoVideosAndTwoAudios={VegasHelper.isPickedTwoVideosAndTwoAudios(selectedMedias)}");
-                return;
-            }
+
+            return true;
         }
     }
 }

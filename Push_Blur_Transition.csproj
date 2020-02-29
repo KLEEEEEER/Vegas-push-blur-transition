@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="FourTrackEventsMode.cs" />
+    <Compile Include="PushBlur.cs" />
     <Compile Include="ITrackEventsMode.cs" />
     <Compile Include="Push_Blur_Transition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
