@@ -9,8 +9,6 @@ namespace Push_Blur_Transition
 {
     class VegasPans
     {
-
-        // To Right
         public static void PanFromLeftToCenter(Vegas vegas, VideoEvent videoEvent)
         {
             using (UndoBlock undo = new UndoBlock("Add pan/crop"))
@@ -27,21 +25,13 @@ namespace Push_Blur_Transition
         {
             using (UndoBlock undo = new UndoBlock("Add pan/crop"))
             {
-                // get the first keyframe
                 VideoMotionKeyframe key0 = videoEvent.VideoMotion.Keyframes[0];
-                // get the width of the project
                 int videoWidth = vegas.Project.Video.Width;
-
-                // create a new keyframe at 2 seconds.
                 VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
-                // add the new keyframe
                 videoEvent.VideoMotion.Keyframes.Add(key1);
-                // move the first keyframe just off screen
                 key1.MoveBy(new VideoMotionVertex(-videoWidth, 0));
             }
         }
-
-        // To left
 
         public static void PanFromRightToCenter(Vegas vegas, VideoEvent videoEvent)
         {
@@ -59,16 +49,10 @@ namespace Push_Blur_Transition
         {
             using (UndoBlock undo = new UndoBlock("Add pan/crop"))
             {
-                // get the first keyframe
                 VideoMotionKeyframe key0 = videoEvent.VideoMotion.Keyframes[0];
-                // get the width of the project
                 int videoWidth = vegas.Project.Video.Width;
-
-                // create a new keyframe at 2 seconds.
                 VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
-                // add the new keyframe
                 videoEvent.VideoMotion.Keyframes.Add(key1);
-                // move the first keyframe just off screen
                 key1.MoveBy(new VideoMotionVertex(videoWidth, 0));
             }
         }

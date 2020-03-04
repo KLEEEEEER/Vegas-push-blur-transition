@@ -3,11 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace Push_Blur_Transition
 {
@@ -28,14 +24,6 @@ namespace Push_Blur_Transition
     public class PushBlurTransitionModule : ICustomCommandModule
     {
         protected Vegas myVegas = null;
-
-        private int windowWidth = 164;
-        private int windowHeight = 600;
-        private int buttonHeight = 30;
-        private int buttonWidth = 142;
-        private int paddingTop = 4;
-        private int paddingBottom = 4;
-        private int paddingLeft = 4;
 
         Button fromRightBtn = new Button();
         Button fromLeftBtn = new Button();
@@ -150,53 +138,9 @@ namespace Push_Blur_Transition
                 linkLabel.Text = "github.com/KLEEEEEER";
                 dockView.Controls.Add(linkLabel);
 
-                //dockView.DefaultFloatingSize = new System.Drawing.Size(windowWidth, windowHeight);
                 dockView.DefaultFloatingSize = new System.Drawing.Size(145, 308);
                 dockView.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 dockView.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-
-
-                /*
-                int filledSpace = buttonHeight + paddingTop + paddingBottom;
-
-                offsetTrackBar = new TrackBar();
-                offsetTrackBar.Minimum = 50;
-                offsetTrackBar.Maximum = 5000;
-                offsetTrackBar.Value = 150;
-                offsetTrackBar.TickFrequency = 50;
-                offsetTrackBar.Width = buttonWidth;
-                offsetTrackBar.Height = buttonHeight;
-                offsetTrackBar.Location = new System.Drawing.Point(paddingLeft, filledSpace * 1 + paddingTop);
-                offsetTrackBar.ValueChanged += OffsetTrackBar_ValueChanged;
-                dockView.Controls.Add(offsetTrackBar);
-
-                Button pushLeft = new Button();
-                pushLeft.Text = "From Right";
-                pushLeft.Click += pushRightClick;
-                pushLeft.Location = new System.Drawing.Point(paddingLeft, filledSpace * 2 + paddingTop);
-                pushLeft.Width = buttonWidth;
-                pushLeft.Height = buttonHeight;
-                //pushLeft.Dock = DockStyle.Fill;
-                dockView.Controls.Add(pushLeft);
-
-                Button pushRight = new Button();
-                pushRight.Text = "From Left";
-                pushRight.Click += pushLeftClick;
-                pushRight.Location = new System.Drawing.Point(paddingLeft, filledSpace * 3 + paddingTop);
-                pushRight.Width = buttonWidth;
-                pushRight.Height = buttonHeight;
-                dockView.Controls.Add(pushRight);
-
-                //label.Dock = DockStyle.Fill;
-                label.Text = "PushBlurExt 0.1";
-                label.Location = new System.Drawing.Point(paddingLeft, paddingTop);
-                label.Width = buttonWidth;
-                label.Height = buttonHeight;
-                label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                dockView.Controls.Add(label);
-
-
-                dockView.Width = 600;*/
 
                 myVegas.LoadDockView(dockView);
             }

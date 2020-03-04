@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="PushBlur.cs" />
-    <Compile Include="ITrackEventsMode.cs" />
     <Compile Include="Push_Blur_Transition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControlForm.cs">

@@ -13,33 +13,14 @@ namespace Push_Blur_Transition
         private List<TrackEvent> selectedMedias;
         private Vegas myVegas;
         private TransitionMode transitionMode;
-
-        //private TrackEvent firstCut1 = null;
-        //private TrackEvent firstCut2 = null;
-
-        //private TrackEvent secondCut1 = null;
-        //private TrackEvent secondCut2 = null;
-
-        // private TrackEvent firstClip1 = null;
-        //private TrackEvent firstClip2 = null;
-        //private TrackEvent secondClip1 = null;
-        //private TrackEvent secondClip2 = null;
-
         TrackEventGroup group1;
         TrackEventGroup group2;
-
-
 
         public PushBlur(List<TrackEvent> SelectedMedias, Vegas vegas, TransitionMode TransitionMode)
         {
             selectedMedias = SelectedMedias;
             myVegas = vegas;
             transitionMode = TransitionMode;
-
-            //firstClip1 = selectedMedias[0];
-            //firstClip2 = selectedMedias[1];
-            //secondClip1 = selectedMedias[2];
-            //secondClip2 = selectedMedias[3];
 
             group1 = selectedMedias[0].Group;
             group2 = selectedMedias[1].Group;
@@ -53,20 +34,12 @@ namespace Push_Blur_Transition
 
         public void applyEffects()
         {
-            /* *
-                 * 1. Обрезать первый клип
-                 * 1.1 Добавить эффекты и пан на первый обрезанный клип
-                 * 2. Переместить по возможности второй клип на другую дорожку
-                 * 3. Переместить второй клип на точку начала обрезанного фрагмента из первого клипа
-                 * 4. Обрезать начало второго клипа
-                 * 4.2 Добавить эффекты и пан на второй обрезанный клип
-                 */
-            List<TrackEvent> firstGroupCuts = CutFirstGroup(); // 
-            AddEffectsFirstGroupCuts(firstGroupCuts); //
-            ChangeTrackSecondGroup();  //
-            MoveSecondGroup(firstGroupCuts); //
-            List<TrackEvent> secondGroupCuts = CutSecondGroup(); //
-            AddEffectsSecondGroupCuts(secondGroupCuts); //
+            List<TrackEvent> firstGroupCuts = CutFirstGroup();
+            AddEffectsFirstGroupCuts(firstGroupCuts);
+            ChangeTrackSecondGroup();
+            MoveSecondGroup(firstGroupCuts);
+            List<TrackEvent> secondGroupCuts = CutSecondGroup();
+            AddEffectsSecondGroupCuts(secondGroupCuts);
         }
 
         public List<TrackEvent> CutFirstGroup()
