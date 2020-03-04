@@ -15,5 +15,6 @@ namespace Push_Blur_Transition
         public static string pluginName = "VEGAS Linear Blur";
         public static string pluginPreset = "Horizontal Light";
         public static bool DebugMode = false;
+        public static string GithubUrl = "https://github.com/KLEEEEEER";
     }
 }

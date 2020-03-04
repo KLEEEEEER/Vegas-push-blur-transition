@@ -146,6 +146,7 @@ namespace Push_Blur_Transition
                 linkLabel.Size = new System.Drawing.Size(108, 12);
                 linkLabel.TabIndex = 7;
                 linkLabel.TabStop = true;
+                linkLabel.Click += LinkLabel_Click;
                 linkLabel.Text = "github.com/KLEEEEEER";
                 dockView.Controls.Add(linkLabel);
 
@@ -199,6 +200,11 @@ namespace Push_Blur_Transition
 
                 myVegas.LoadDockView(dockView);
             }
+        }
+
+        private void LinkLabel_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Config.GithubUrl);
         }
 
         private void NumericUpDown_ValueChanged(object sender, EventArgs e)
