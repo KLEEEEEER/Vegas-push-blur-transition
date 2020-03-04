@@ -15,7 +15,7 @@ namespace Push_Blur_Transition
         {
             using (UndoBlock undo = new UndoBlock("Add pan/crop"))
             {
-                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromSeconds(2));
+                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
                 videoEvent.VideoMotion.Keyframes.Add(key1);
                 VideoMotionKeyframe key0 = videoEvent.VideoMotion.Keyframes[0];
                 int videoWidth = vegas.Project.Video.Width;
@@ -33,7 +33,7 @@ namespace Push_Blur_Transition
                 int videoWidth = vegas.Project.Video.Width;
 
                 // create a new keyframe at 2 seconds.
-                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromSeconds(2));
+                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
                 // add the new keyframe
                 videoEvent.VideoMotion.Keyframes.Add(key1);
                 // move the first keyframe just off screen
@@ -47,7 +47,7 @@ namespace Push_Blur_Transition
         {
             using (UndoBlock undo = new UndoBlock("Add pan/crop"))
             {
-                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromSeconds(2));
+                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
                 videoEvent.VideoMotion.Keyframes.Add(key1);
                 VideoMotionKeyframe key0 = videoEvent.VideoMotion.Keyframes[0];
                 int videoWidth = vegas.Project.Video.Width;
@@ -65,7 +65,7 @@ namespace Push_Blur_Transition
                 int videoWidth = vegas.Project.Video.Width;
 
                 // create a new keyframe at 2 seconds.
-                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromSeconds(2));
+                VideoMotionKeyframe key1 = new VideoMotionKeyframe(Timecode.FromMilliseconds(Config.splitOffset));
                 // add the new keyframe
                 videoEvent.VideoMotion.Keyframes.Add(key1);
                 // move the first keyframe just off screen
