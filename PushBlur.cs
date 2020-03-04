@@ -120,22 +120,23 @@ namespace Push_Blur_Transition
                 if (trackEvent.MediaType == MediaType.Audio)
                 {
                     List<Track> audioTracks = VegasHelper.FindAudioTracks(myVegas);
-                    bool replaced = false;
+                    bool moved = false;
                     foreach (Track track in audioTracks)
                     {
-                        if (trackEvent.Track == track) continue;
+                        //if (trackEvent.Track == track) continue;
+                        if (!isTrackUnique(trackEvent.Track, track, group1)) continue;
                         if (track.MediaType == MediaType.Audio)
                         {
                             using (UndoBlock undo = new UndoBlock("Change track of audio"))
                             {
                                 trackEvent.Track = track;
                             }
-                            replaced = true;
+                            moved = true;
                             break;
                         }   
                     }
 
-                    if (!replaced)
+                    if (!moved)
                     {
                         AudioTrack newAudioTrack = null;
                         using (UndoBlock undo = new UndoBlock("Creating new AudioTrack"))
@@ -154,22 +155,22 @@ namespace Push_Blur_Transition
                 else if (trackEvent.MediaType == MediaType.Video)
                 {
                     List<Track> videoTracks = VegasHelper.FindVideoTracks(myVegas);
-                    bool replaced = false;
+                    bool moved = false;
                     foreach (Track track in videoTracks)
                     {
-                        if (trackEvent.Track == track) continue;
+                        if (!isTrackUnique(trackEvent.Track, track, group1)) continue;
                         if (track.MediaType == MediaType.Video)
                         {
                             using (UndoBlock undo = new UndoBlock("Change track of video"))
                             {
                                 trackEvent.Track = track;
                             }
-                            replaced = true;
+                            moved = true;
                             break;
                         }
                     }
 
-                    if (!replaced)
+                    if (!moved)
                     {
                         VideoTrack newVideoTrack = null;
                         using (UndoBlock undo = new UndoBlock("Creating new AudioTrack"))
@@ -186,6 +187,21 @@ namespace Push_Blur_Transition
                     }
                 }
             }
+        }
+
+        private bool isTrackUnique(Track initialTrack, Track comparisonTrack, TrackEventGroup trackEventsGroup)
+        {
+            if (comparisonTrack == initialTrack)
+            {
+                return false;
+            }
+
+            foreach (TrackEvent trackEvent in trackEventsGroup)
+            {
+                if (trackEvent.Track == comparisonTrack) return false;
+            }
+
+            return true;
         }
 
         public void MoveSecondGroup(List<TrackEvent> cuts)
